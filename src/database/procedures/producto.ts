@@ -1,0 +1,1 @@
+export const SPI_producto: string = 'INSERT INTO producto SET ?';
