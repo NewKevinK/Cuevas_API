@@ -7,3 +7,5 @@ router.get('/', getCategorias);
 
 router.get('/:idCategoria', getCategoriaID );
 
+export { router };
+
