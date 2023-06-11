@@ -1,0 +1,25 @@
+import { Request, Response } from 'express';
+import { handleHttp } from '../utils/error.handle';
+import { getConnection } from '../database/dbConfig';
+
+const getCategorias = async (req: Request, res: Response) => {
+    try {
+        const conn = await getConnection();
+        const result = await conn.query("SELECT * FROM categoria");
+        res.send(result);
+    }catch (error) {
+        handleHttp(res, 'ErrorGetCategoria');
+    }
+}
+
+const getCategoriaID = async ({params}: Request, res: Response) => {
+    try {
+        const conn = await getConnection();
+        const result = await conn.query("SELECT * FROM categoria WHERE idCategoria = ?", params.idCategoria);
+        res.send(result);
+    }catch (error) {
+        handleHttp(res, 'ErrorGetCategoriaID');
+    }
+}
+
+export { getCategorias, getCategoriaID };
