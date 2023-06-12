@@ -17,7 +17,7 @@ app.use(morgan('dev'));
 app.use(router);
 
 //Nuevas rutas
-app.use('/categoria', categoriaR);
+app.use('/api/categoria', categoriaR);
 
 app.listen(PORT, () => console.log("Server listening to", PORT) );
 
