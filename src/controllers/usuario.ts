@@ -8,7 +8,9 @@ import { SPI_usuario } from "../database/procedures/usuario";
 
 const getUsuario = async (req: Request, res: Response) => {
     try {
-
+        const conn = await getConnection();
+        const result = await conn.query("SELECT * FROM usuario");
+        res.json(result);
     }catch (error) {
         handleHttp(res, 'ErrorGetUsuario');
     }
@@ -16,7 +18,9 @@ const getUsuario = async (req: Request, res: Response) => {
 
 const getUsuarioID = async ({params}: Request, res: Response) => {
     try {
-
+        const conn = await getConnection();
+        const result = await conn.query("SELECT * FROM usuario WHERE idUsuario = ?", params.idUsuario);
+        res.json(result);
     }catch (error) {
         handleHttp(res, 'ErrorGetUsuarioID');
     }
@@ -49,7 +53,9 @@ const addUsuario = async ({body}: Request, res: Response) => {
 
 const updateUsuario = async ({params, body}: Request, res: Response) => {
     try {
-
+        const conn = await getConnection();
+        const result = await conn.query("UPDATE usuario SET ? WHERE idUsuario = ?", [body, params.idUsuario]);
+        res.json(result);
     }catch (error) {
         handleHttp(res, 'ErrorUpdateUsuario');
     }
@@ -57,7 +63,9 @@ const updateUsuario = async ({params, body}: Request, res: Response) => {
 
 const deleteUsuario = async ({params}: Request, res: Response) => {
     try {
-
+        const conn = await getConnection();
+        const result = await conn.query("DELETE FROM usuario WHERE idUsuario = ?", params.idUsuario);
+        res.json(result);
     }catch (error) {
         handleHttp(res, 'ErrorDeleteUsuario');
     }

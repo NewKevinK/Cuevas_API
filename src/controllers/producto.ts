@@ -7,15 +7,19 @@ import { SPI_producto } from "../database/procedures/producto";
 
     const getProducto = async (req: Request, res: Response) => {    
         try {
-
+            const conn = await getConnection();
+            const result = await conn.query("SELECT * FROM producto");
+            res.send(result);
         }catch (error) {
             handleHttp(res, 'ErrorGetProducto');
         }
     }
 
-    const getProductoID = async (req: Request, res: Response) => {
+    const getProductoID = async ({params}: Request, res: Response) => {
         try {
-
+            const conn = await getConnection();
+            const result = await conn.query("SELECT * FROM producto WHERE idProducto = ?", params.idProducto);
+            res.send(result);
         }catch (error) {
             handleHttp(res, 'ErrorGetProductoID');
         }
@@ -24,10 +28,8 @@ import { SPI_producto } from "../database/procedures/producto";
     const addProducto = async ( {body}: Request, res: Response) => {
         try {
             const newPost:Producto = body;
-            //console.log(newPost);
-            //const {nombre, descripcion, precio, stock} = req.body;
+            
             //const newPro:string = req.body;
-            //const result = await getConnection().query(query);
             const conn = await getConnection();
             await conn.query(SPI_producto, [newPost]);
 
@@ -38,17 +40,21 @@ import { SPI_producto } from "../database/procedures/producto";
         }
     };
 
-    const updateProducto = async (req: Request, res: Response) => {
+    const updateProducto = async ({params, body}: Request, res: Response) => {
         try {
-            
+            const conn = await getConnection();
+            const result = await conn.query("UPDATE producto SET ? WHERE idProducto = ?", [body, params.idProducto]);
+            res.json(result);
         }catch (error) {
             handleHttp(res, 'ErrorAddProducto');
         }
     }
 
-    const deleteProducto = async (req: Request, res: Response) => {
+    const deleteProducto = async ({params}: Request, res: Response) => {
         try {
-            
+            const conn = await getConnection();
+            const result = await conn.query("DELETE FROM producto WHERE idProducto = ?", params.idProducto);
+            res.json(result);
         }catch (error) {
             handleHttp(res, 'ErrorAddProducto');
         }

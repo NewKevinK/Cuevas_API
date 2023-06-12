@@ -22,4 +22,15 @@ const getCategoriaID = async ({params}: Request, res: Response) => {
     }
 }
 
-export { getCategorias, getCategoriaID };
+const addCategoria = async ( {body}: Request, res: Response) => {
+    try {
+        
+        const conn = await getConnection();
+        const result = await conn.query("INSERT INTO categoria SET ?", body);
+        res.send(result);
+    }catch (error) {
+        handleHttp(res, 'ErrorAddCategoria');
+    }   
+}
+
+export { getCategorias, getCategoriaID, addCategoria };
