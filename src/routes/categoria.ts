@@ -2,12 +2,17 @@ import { Router } from 'express';
 import { addCategoria, getCategoriaID, getCategorias } from '../controllers/categoria';
 
 const router = Router();
+//Nuevo routerr
+const routerr = Router();
 
-router.get('/', getCategorias);
+routerr.get('/', getCategorias);
 
-router.get('/:idCategoria', getCategoriaID );
+routerr.get('/:idCategoria', getCategoriaID );
 
-router.post('/', addCategoria);
+routerr.post('/', addCategoria);
 
+//Nuevo export default
+export default routerr;
 export { router };
+
 

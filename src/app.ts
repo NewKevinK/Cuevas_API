@@ -2,6 +2,9 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 
+//Nuevas importaciones
+import categoriaR from "./routes/categoria";
+
 import "dotenv/config";
 import {router} from "./routes";
 const PORT = process.env.PORT || 9099;
@@ -13,6 +16,8 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(router);
 
+//Nuevas rutas
+app.use('/categoria', categoriaR);
 
 app.listen(PORT, () => console.log("Server listening to", PORT) );
 
