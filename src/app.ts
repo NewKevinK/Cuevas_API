@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 
-//Nuevas importaciones
+//Nuevas importaciones ULTIMAA
 import categoriaR from "./routes/categoria";
 
 import "dotenv/config";
