@@ -14,10 +14,12 @@ app.use(express.urlencoded({extended : false}));
 app.use(express.json());
 app.use(cors());
 app.use(morgan('dev'));
-app.use(router);
 
 //Nuevas rutas
 app.use('/api/categoria', categoriaR);
+app.use(router);
+
+
 
 app.listen(PORT, () => console.log("Server listening to", PORT) );
 
