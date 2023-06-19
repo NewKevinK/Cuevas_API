@@ -4,7 +4,7 @@ import { validateToken } from "../utils/jwt";
 
 const router = Router();
 
-router.post("/login",validateToken, loginAuth);
+router.post("/login", loginAuth);
 
 router.post("/",validateToken, addCliente);
 
