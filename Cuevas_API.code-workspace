@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "../UV_EATS/UV_Eats_API"
+		},
+		{
+			"path": "../SDGTACWEB/SDGTACWEB"
 		}
 	]
 }

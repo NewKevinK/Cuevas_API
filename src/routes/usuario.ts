@@ -1,17 +1,18 @@
 import { Router} from "express";
 import { addUsuario, deleteUsuario, getUsuario, getUsuarioID, updateUsuario } from "../controllers/usuario";
+import { validateToken } from "../utils/jwt";
 
 const router = Router();
 
-router.get("/", getUsuario);
+router.get("/",validateToken, getUsuario);
 
-router.get("/:idUsuario", getUsuarioID);
+router.get("/:idUsuario",validateToken, getUsuarioID);
 
-router.post("/", addUsuario);
+router.post("/",validateToken, addUsuario);
 
-router.patch("/:idUsuario", updateUsuario);
+router.patch("/:idUsuario",validateToken, updateUsuario);
 
-router.delete("/:idUsuario", deleteUsuario);
+router.delete("/:idUsuario", validateToken,deleteUsuario);
 
 
 export {router};

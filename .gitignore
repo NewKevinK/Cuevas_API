@@ -1,3 +1,4 @@
 node_modules
 .env
 dist/
+Cuevas_API.code-workspace

@@ -1,14 +1,15 @@
 import { Router } from "express";
 import { addSucursal, getSucursal, getSucursalID } from "../controllers/sucursal";
+import { validateToken } from "../utils/jwt";
 
 
 const router = Router();
 
-router.get("/", getSucursal);
+router.get("/",validateToken, getSucursal);
 
-router.get("/:idSucursal", getSucursalID);
+router.get("/:idSucursal",validateToken, getSucursalID);
 
-router.post("/", addSucursal);
+router.post("/",validateToken, addSucursal);
 
 
 export {router};

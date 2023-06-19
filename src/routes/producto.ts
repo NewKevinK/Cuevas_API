@@ -1,17 +1,18 @@
 import { Router, Response, Request } from "express";
+import { validateToken } from "../utils/jwt";
 import { addProducto, deleteProducto, getProducto, getProductoID, updateProducto } from "../controllers/producto";
 
 const router = Router();
 
-router.get("/", getProducto);
+router.get("/",validateToken, getProducto);
 
-router.get("/:idProducto", getProductoID);
+router.get("/:idProducto", validateToken, getProductoID);
 
-router.post("/", addProducto);
+router.post("/", validateToken, addProducto);
 
-router.patch("/:idProducto", updateProducto);
+router.patch("/:idProducto",validateToken, updateProducto);
 
-router.delete("/:idProducto", deleteProducto);
+router.delete("/:idProducto",validateToken, deleteProducto);
 
 
 export {router};

@@ -1,17 +1,18 @@
 import e, { Router } from 'express';
 
 import { addDomicilio, deleteDomicilio, getDomicilio, getDomicilioID, updateDomicilio } from '../controllers/domicilio';
+import { validateToken } from '../utils/jwt';
 
 const router = Router();
 
-router.get("/", getDomicilio);
+router.get("/",validateToken, getDomicilio);
 
-router.get("/:idDomicilio", getDomicilioID);
+router.get("/:idDomicilio",validateToken, getDomicilioID);
 
-router.post("/", addDomicilio);
+router.post("/",validateToken, addDomicilio);
 
-router.patch("/:idDomicilio", updateDomicilio);
+router.patch("/:idDomicilio",validateToken, updateDomicilio);
 
-router.delete("/:idDomicilio", deleteDomicilio);
+router.delete("/:idDomicilio",validateToken, deleteDomicilio);
 
 export {router};

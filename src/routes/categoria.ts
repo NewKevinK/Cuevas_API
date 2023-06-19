@@ -1,18 +1,19 @@
 import { Router } from 'express';
 import { addCategoria, getCategoriaID, getCategorias } from '../controllers/categoria';
+import { validateToken } from '../utils/jwt';
 
 const router = Router();
 //Nuevo routerr
-const routerr = Router();
+//const routerr = Router();
 
-routerr.get('/', getCategorias);
+router.get('/',validateToken, getCategorias);
 
-routerr.get('/:idCategoria', getCategoriaID );
+router.get('/:idCategoria',validateToken, getCategoriaID );
 
-routerr.post('/', addCategoria);
+router.post('/',validateToken, addCategoria);
 
 //Nuevo export default
-export default routerr;
+//export default routerr;
 export { router };
 
 

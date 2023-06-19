@@ -1,4 +1,4 @@
-import e, { Request, Response } from "express";
+import  { Request, Response } from "express";
 import { handleHttp } from "../utils/error.handle";
 import { getConnection } from "../database/dbConfig";
 import { Orden } from "../interface/Orden";
@@ -56,4 +56,14 @@ export const getOrdenProducto = async ({params}: Request, res: Response) => {
     }
 }
 
-export const methods = {addOrden, getOrden, getOrdenID, getOrdenProducto};
+export const updateOrden = async ({params, body}: Request, res: Response) => {
+    try{
+        const conn = await getConnection();
+        const result = await conn.query("UPDATE orden SET ? WHERE idOrden = ?", [body, params.idOrden]);
+        res.json(result);
+    }catch (error) {
+        handleHttp(res, 'ErrorUpdateOrden');
+    }
+}
+
+export const methods = {addOrden, getOrden, getOrdenID, getOrdenProducto, updateOrden};

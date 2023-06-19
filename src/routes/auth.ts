@@ -1,11 +1,12 @@
 import { Router } from "express";
 import { addCliente, loginAuth } from "../controllers/auth";
+import { validateToken } from "../utils/jwt";
 
 const router = Router();
 
-router.post("/login", loginAuth);
+router.post("/login",validateToken, loginAuth);
 
-router.post("/", addCliente);
+router.post("/",validateToken, addCliente);
 
 
 export {router};

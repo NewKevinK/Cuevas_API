@@ -3,7 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 
 //Nuevas importaciones ULTIMAA
-import categoriaR from "./routes/categoria";
+//import categoriaR from "./routes/categoria";
 
 import "dotenv/config";
 import {router} from "./routes";
@@ -16,7 +16,7 @@ app.use(cors());
 app.use(morgan('dev'));
 
 //Nuevas rutas
-app.use('/api/categoria', categoriaR);
+//app.use('/api/categoria', categoriaR);
 app.use(router);
 
 
