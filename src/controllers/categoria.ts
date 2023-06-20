@@ -33,10 +33,10 @@ const addCategoria = async ( {body}: Request, res: Response) => {
     }   
 }
 
-const getCategoriaProducto = async (req: Request, res: Response) => {
+const getCategoriaProducto = async ({params}: Request, res: Response) => {
     try {
         const conn = await getConnection();
-        const result = await conn.query("SELECT * FROM producto WHERE idCategoria = ?");
+        const result = await conn.query("SELECT * FROM producto WHERE idCategoria = ?", params.idCategoria);
         res.send(result);
     }catch (error) {
         handleHttp(res, 'ErrorGetCategoriaProducto');

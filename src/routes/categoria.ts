@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { addCategoria, getCategoriaID, getCategorias } from '../controllers/categoria';
+import { addCategoria, getCategoriaID, getCategoriaProducto, getCategorias } from '../controllers/categoria';
 import { validateToken } from '../utils/jwt';
 
 const router = Router();
@@ -12,7 +12,7 @@ router.get('/:idCategoria',validateToken, getCategoriaID );
 
 router.post('/',validateToken, addCategoria);
 
-router.get('/producto/:idCategoria',validateToken, getCategoriaID);
+router.get('/producto/:idCategoria',validateToken, getCategoriaProducto);
 
 //Nuevo export default
 //export default routerr;
