@@ -34,7 +34,15 @@ const addCarroProducto = async ( {body}: Request, res: Response) => {
             let res = await connection.query("UPDATE carroproducto SET cantidad = cantidad + ? WHERE idProducto = ? AND idCarro = ?", [body.cantidad, body.idProducto, body.idCarro]); 
         }else{
             console.log("entroNoExiste");
-            let res = await connection.query("INSERT INTO carroproducto SET ?", body); 
+            let preccc = await connection.query("SELECT precio FROM producto WHERE idProducto = ?", body.idProducto);
+            var precccJSON = JSON.parse(JSON.stringify(preccc));
+            const bbbb = {
+                idCarro: body.idCarro,
+                idProducto: body.idProducto,
+                cantidad: body.cantidad,
+                precio: precccJSON[0].precio
+            }
+            let res = await connection.query("INSERT INTO carroproducto SET ?", bbbb); 
         }
         
         res.json({ message: "carroProducto added" });

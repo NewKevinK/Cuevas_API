@@ -1,6 +1,6 @@
 import { Router, Response, Request } from "express";
 import { validateToken } from "../utils/jwt";
-import { addProducto, deleteProducto, getProducto, getProductoID, updateProducto } from "../controllers/producto";
+import { addProducto, deleteProducto, getImagenProductoCategoria, getImagenProductoID, getProducto, getProductoID, updateProducto } from "../controllers/producto";
 
 const router = Router();
 
@@ -13,6 +13,10 @@ router.post("/", validateToken, addProducto);
 router.patch("/:idProducto",validateToken, updateProducto);
 
 router.delete("/:idProducto",validateToken, deleteProducto);
+
+router.get("/imagenProductoID/", validateToken, getImagenProductoID);
+
+router.get("/imagenProductoCategoria/", validateToken, getImagenProductoCategoria)
 
 
 export {router};

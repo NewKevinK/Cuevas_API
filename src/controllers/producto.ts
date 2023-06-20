@@ -60,6 +60,26 @@ import { SPI_producto } from "../database/procedures/producto";
         }
     }
 
-    export {getProducto, getProductoID, addProducto, updateProducto, deleteProducto};
+    const getImagenProductoID = async ({params}: Request, res: Response) => {
+        try {
+            const conn = await getConnection();
+            const result = await conn.query("SELECT imagenProducto FROM producto WHERE idProducto = ?", params.idProducto);
+            res.send(result);
+        }catch (error) {
+            handleHttp(res, 'ErrorGetImagenProducto');
+        }
+    }
+
+    const getImagenProductoCategoria = async ({params}: Request, res: Response) => {
+        try {
+            const conn = await getConnection();
+            const result = await conn.query("SELECT imagenProducto FROM producto WHERE idCategoria = ?", params.idCategoria);
+            res.send(result);
+        }catch (error) {
+            handleHttp(res, 'ErrorGetImagenProducto');
+        }
+    }
+
+    export {getProducto, getProductoID, addProducto, updateProducto, deleteProducto, getImagenProductoID, getImagenProductoCategoria};
     
 

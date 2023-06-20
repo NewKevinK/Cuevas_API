@@ -12,6 +12,8 @@ router.get('/:idCategoria',validateToken, getCategoriaID );
 
 router.post('/',validateToken, addCategoria);
 
+router.get('/producto/:idCategoria',validateToken, getCategoriaID);
+
 //Nuevo export default
 //export default routerr;
 export { router };

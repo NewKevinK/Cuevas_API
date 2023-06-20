@@ -33,4 +33,14 @@ const addCategoria = async ( {body}: Request, res: Response) => {
     }   
 }
 
-export { getCategorias, getCategoriaID, addCategoria };
+const getCategoriaProducto = async (req: Request, res: Response) => {
+    try {
+        const conn = await getConnection();
+        const result = await conn.query("SELECT * FROM producto WHERE idCategoria = ?");
+        res.send(result);
+    }catch (error) {
+        handleHttp(res, 'ErrorGetCategoriaProducto');
+    }
+}
+
+export { getCategorias, getCategoriaID, addCategoria, getCategoriaProducto };
