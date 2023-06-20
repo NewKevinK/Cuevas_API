@@ -76,6 +76,7 @@ const resetCar = async (idCarro: number) => {
     try{
         let connection = await getConnection();
         let result = await connection.query("DELETE FROM carroproducto WHERE idCarro = ?" ,idCarro);
+        let borr = await connection.query("UPDATE carromain SET totalProductos = 0, subTotal = 0 WHERE idCarro = ?" ,idCarro);
         return true;
     }catch (error) {
         console.log(error);
