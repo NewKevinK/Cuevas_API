@@ -6,7 +6,7 @@ const router = Router();
 
 router.post("/login", loginAuth);
 
-router.post("/",validateToken, addCliente);
+router.post("/", addCliente);
 
 
 export {router};
